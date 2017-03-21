@@ -109,6 +109,6 @@ Ci sono alcuni bug noti che non sono ancora stati risolti
 
 ```
 SET max_sp_recursion_depth = 255;  
-call sortForest('Requisiti')
-call sortForest('UseCase')
+call sortForest('Requisiti');
+call sortForest('UseCase');
 ```
