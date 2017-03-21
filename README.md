@@ -95,6 +95,18 @@ ed in particolare dell'architettura che abbiamo realizzato (qualità
 ## Autori
 *Munari Stefano* : parte MySQL  
 *Vedovato Fabio* : parte PHP  
-
+*Simeone Pizzi* : supporto generazione immagini
 ## Licenza
 [Tutti i files .sql sono rilasciati sotto licenza GPLv3](https://github.com/StefanoMunari/PragmaDB/blob/master/LICENSE)
+
+## Bug noti
+Ci sono alcuni bug noti che non sono ancora stati risolti
+
+* aggiunta attori durante creazione use case: quando si crea uno use case, si è costretti ad aggiungere almeno un attore. Gli attori però non viene effettivamente inserito nel database (alcune volte viene visualizzato un errore, altre no), ed è necessario modificare lo use case per aggiungere gli attori.
+
+* requisiti/use case che spariscono: a volte il database può rimanere in uno stato inconsistente, con requisiti e/o use case che
+ spariscono. In questi casi è necessario collegarsi manualmente al database, controllare che l'id dei requisiti/use case in questione sia corretto, ed una volta sistemati eventuali incongruenze eseguire il seguente codice SQL:
+ 
+SET max_sp_recursion_depth = 255;
+call sortForest('Requisiti')
+call sortForest('UseCase')
