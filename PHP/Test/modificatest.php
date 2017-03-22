@@ -8,6 +8,9 @@ session_start();
 
 $absurl=urlbasesito();
 
+date_default_timezone_set("Europe/Rome");
+
+
 if(empty($_SESSION['user'])){
 	header("Location: $absurl/error.php");
 }
