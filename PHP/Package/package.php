@@ -30,8 +30,6 @@ echo<<<END
 					<aside id="export" class="widget">
 						<h4 class="widget-title">Esporta in LaTeX (DP)</h4>
 						<ul>
-							<li><a class="link-color-pers" href="$absurl/Package/LaTeX/getpackageclassidpbe.php">Package/Classi DP (Back-End)</a></li>
-							<li><a class="link-color-pers" href="$absurl/Package/LaTeX/getpackageclassidpfe.php">Package/Classi DP (Front-End)</a></li>
 							<li><a class="link-color-pers" href="$absurl/Classi/LaTeX/gettracciamentoclassirequisiti.php">Tracciamento Classi-Requisiti</a></li>
 							<li><a class="link-color-pers" href="$absurl/Classi/LaTeX/gettracciamentorequisiticlassi.php">Tracciamento Requisiti-Classi</a></li>
 							<li><a class="link-color-pers" href="$absurl/Package/LaTeX/gettracciamentocomponentirequisiti.php">Tracciamento Componenti-Requisiti</a></li>

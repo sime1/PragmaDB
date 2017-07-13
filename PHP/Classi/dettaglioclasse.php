@@ -49,7 +49,7 @@ END;
 				else{
 echo<<<END
 
-					<dd>$row[$i]</dd>
+					<dd><pre>$row[$i]</pre></dd>
 END;
 				}
 			}

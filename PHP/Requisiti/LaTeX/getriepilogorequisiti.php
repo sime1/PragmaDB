@@ -16,7 +16,7 @@ else{
 	header('Content-Disposition: attachment; filename="riepilogoRequisiti.tex"');
 	header('Expires: 0');
 	header('Cache-Control: no-cache, must-revalidate');
-	
+
 	$conn=sql_conn();
 	//$query_ord="CALL sortForest('Requisiti')";
 	$query="SELECT r.IdRequisito
@@ -30,16 +30,15 @@ else{
 		${$id[1].$id[2]}++;
 	}
 echo<<<END
-\\subsection{Riepilogo Requisiti}
 \\normalsize
 \\begin{longtable}{|c|c|c|c|}
-\\hline 
+\\hline
 \\textbf{Tipo} & \\textbf{Obbligatorio} & \\textbf{Desiderabile} & \\textbf{Facoltativo}\\\
 \\hline
 Funzionale & $FO & $FD & $FF\\\ \\hline
 Prestazionale & $PO & $PD & $PF\\\ \\hline
-Di Qualità & $QO & $QD & $QF\\\ \\hline
-Di Vincolo & $VO & $VD & $VF\\\ \\hline
+Qualità & $QO & $QD & $QF\\\ \\hline
+Vincolo & $VO & $VD & $VF\\\ \\hline
 \\caption[Riepilogo Requisiti]{Riepilogo Requisiti}
 \\label{tabella:riepilogorequi}
 \\end{longtable}

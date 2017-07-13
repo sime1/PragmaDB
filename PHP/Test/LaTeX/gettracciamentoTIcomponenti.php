@@ -34,7 +34,7 @@ END;
 	while($row_ti=mysql_fetch_row($ti)){
 echo<<<END
 
-\\hyperlink{{$row_ti[0]}}{{$row_ti[0]}} & \\nogloxy{\\texttt{{$row_ti[1]}}}\\\ \\hline
+\\hyperlink{{$row_ti[0]}}{{$row_ti[0]}} & \\texttt{{$row_ti[1]}}\\\ \\hline
 END;
 	}
 echo<<<END

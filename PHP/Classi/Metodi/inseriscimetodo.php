@@ -2,9 +2,11 @@
 
 require('../../Functions/mysql_fun.php');
 require('../../Functions/page_builder.php');
-require('../../Functions/urlLab.php'); 
+require('../../Functions/urlLab.php');
 
 session_start();
+
+date_default_timezone_set("Europe/Rome");
 
 $absurl=urlbasesito();
 
@@ -170,7 +172,7 @@ echo<<<END
 								<label for="acc1">Accessibilità*:</label>
 								<input type="radio" id="acc1" name="acc" value="-" /> <span class="mancante">- (Private)</span>
 								<input type="radio" id="acc2" name="acc" value="#" /> # (Protected)
-								<input type="radio" id="acc3" name="acc" value="+" /> <span class="completato">+ (Public)</span>
+								<input type="radio" id="acc3" name="acc" value="+" checked="checked"/> <span class="completato">+ (Public)</span>
 							</p>
 							<p>
 								<label for="nome">Nome*:</label>

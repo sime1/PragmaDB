@@ -8,6 +8,8 @@ session_start();
 
 $absurl=urlbasesito();
 
+date_default_timezone_set("Europe/Rome");
+
 if(empty($_SESSION['user'])){
 	header("Location: $absurl/error.php");
 }
@@ -104,7 +106,7 @@ echo<<<END
 						<fieldset>
 							<p>
 								<label for="nome">Nome*:</label>
-								<input type="text" id="nome" name="nome" maxlength="20" value="$row[1]"/>
+								<input type="text" id="nome" name="nome" maxlength="200" value="$row[1]"/>
 							</p>
 							<p>
 								<label for="desc">Descrizione*:</label>

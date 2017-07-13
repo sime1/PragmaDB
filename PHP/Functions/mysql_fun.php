@@ -26,17 +26,18 @@ function get_info($user){
 }
 
 function sql_conn(){
-	$host="INSERIRE_NOME_HOST";
-	$user="INSERIRE_NOME_UTENTE_DB";
-	$pwd="INSERIRE_PASSWD_DB";
-	$dbname="INSERIRE_NOME_DB";
+	$host="";
+	$user="";
+	$pwd="";
+	$dbname="";
 	$conn=mysql_connect($host,$user,$pwd)
 			or fail("Connessione fallita!");
 	mysql_select_db($dbname);
 	$query="SET @@session.max_sp_recursion_depth = 255";//necessario per garantire
-	//max profondità possibile alle procedure ricorsive nei sistemi che non 
+	//max profondità possibile alle procedure ricorsive nei sistemi che non
 	//permettono di settare variabili globali
     $query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+  mysql_set_charset('utf8', $conn);
 	return $conn;
 }
 

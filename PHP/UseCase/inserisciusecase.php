@@ -238,7 +238,7 @@ echo<<<END
 								<textarea rows="2" cols="0" id="inclusioni" name="inclusioni" maxlength="10000"></textarea>
 							</p>
 							<p>
-								<label for="estensioni">Estensioni:</label>
+								<label for="estensioni">Use case estesi:</label>
 								<textarea rows="2" cols="0" id="estensioni" name="estensioni" maxlength="10000"></textarea>
 							</p>
 							<p>

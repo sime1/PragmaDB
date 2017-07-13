@@ -62,7 +62,7 @@ echo<<<END
 						<fieldset>
 							<p>
 								<label for="nome">Nome*:</label>
-								<input type="text" id="nome" name="nome" maxlength="20" />
+								<input type="text" id="nome" name="nome" maxlength="200" />
 							</p>
 							<p>
 								<label for="desc">Descrizione:</label>

@@ -1,0 +1,8 @@
+@startuml
+left to right direction
+:Slack:---(Interazione con AtAVi)
+:Assistente Virtuale:---(Interazione con AtAVi)
+:Ospite:---(Interazione con AtAVi)
+:Database di supporto:---(Interazione con AtAVi)
+:Ospite:---(Identificazione)
+@enduml

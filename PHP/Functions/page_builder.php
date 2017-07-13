@@ -493,7 +493,7 @@ END;
 	else{
 echo<<<END
 
-							<td><a class="link-color-pers" href="$absurl/Test/dettagliotest.php?id=$row[0]">Vedi dettaglio</a></td>
+							<td><a class="link-color-pers" href="$absurl/Test/dettagliotest.php?id=$row[0]">$row[7]</a></td>
 END;
 	}
 }

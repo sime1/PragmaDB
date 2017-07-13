@@ -5,10 +5,7 @@ require('../Functions/urlLab.php');
 
 session_start();
 
-$zip = new ZipArchive();
-$zname = tempnam('.', 'tmp');
-
-if(empty($_SESSION['user']) || ($zip->open($zname, ZipArchive::CREATE)!==TRUE))
+if(empty($_SESSION['user']))
 {
 	header("Location: $absurl/error.php");
 }
@@ -23,8 +20,7 @@ else
   $query="SELECT Nome, CodAuto FROM Classe";
 	$list=mysql_query($query, $conn) or fail("Query fallita: ".mysql_error($conn));
 	$file = null;
-	//exec("mkdir ./uml");
-	
+	exec("mkdir ./uml");
 	$classes = array();
 	while($row=mysql_fetch_row($list))
 	{
@@ -32,19 +28,18 @@ else
 	}
 	foreach($classes as $class)
 	{
-		$str = '';
-		$filename = "uml/Class{$class['0']}.uml";
-		//$file = fopen($filename, 'wb');
-		$str .= "@startuml\nscale 1000*1000\nskinparam classAttributeIconSize 0\nclass $class[0]{\n";
-		//fwrite($file, "@startuml\nscale 1000*1000\nskinparam classAttributeIconSize 0\nclass $class[0]{\n");
+	  	$cn = preg_replace('/\s*<<interface>>\s*/', '', $class['0']);
+	  	$filtName = preg_replace('/\s*<<interface>>\s*/','', $class[0]);
+	  	$interface = (strpos($class[0], '<<interface>>') === FALSE) ? '' : "interface {$filtName}\n";
+		$filename = "./uml/Class{$cn}.uml";
+		$file = fopen($filename, 'wb');
+		fwrite($file, "@startuml\nscale 1000*1000\nskinparam classAttributeIconSize 0\n{$interface}class {$filtName}{\n");
 		//proprietà
 		$query = "SELECT AccessMod, Nome, Tipo FROM Attributo WHERE Classe = $class[1]";
 		$list = mysql_query($query, $conn) or fail("Query fallita: ".mysql_error($conn));
 		while($row=mysql_fetch_row($list))
-			$str .= "$row[0] $row[1] : $row[2]\n";
-			//fwrite($file, "$row[0] $row[1] : $row[2]\n");
-		$str .= "__\n";
-		//fwrite($file, "__\n");
+			fwrite($file, "$row[0] $row[1] : $row[2]\n");
+		fwrite($file, "__\n");
 		//metodi
 		$query = "SELECT CodAuto, Nome, AccessMod, ReturnType FROM Metodo WHERE Classe = $class[1]";
 		$list = mysql_query($query, $conn) or fail("Query fallita: ".mysql_error($conn));
@@ -58,39 +53,29 @@ else
 		{
 			$query = "SELECT Nome, Tipo FROM Parametro WHERE Metodo = $met[0]";
 			$list = mysql_query($query, $conn) or fail("Query fallita: ".mysql_error($conn));
-			$str .= "$met[2] $met[1](";
-			//fwrite($file, "$met[2] $met[1](");
+			fwrite($file, "$met[2] $met[1](");
 			if($row = mysql_fetch_row($list))
-				$str .= "$row[0] : $row[1]";
-				//fwrite($file, "$row[0] : $row[1]");
+				fwrite($file, "$row[0] : $row[1]");
 			while($row = mysql_fetch_row($list))
-				$str .= ",$row[0] : $row[1]";
-				//fwrite($file, ",$row[0] : $row[1]");
-			$str .= ") : $met[3]\n";
-			//fwrite($file, ") : $met[3]\n");
+				fwrite($file, ",$row[0] : $row[1]");
+			fwrite($file, ") : $met[3]\n");
 		}
-		$str .= "__\n";
-		//fwrite($file, "__\n");
-		//segnali
+       		fwrite($file, "__\n");
+                //segnali
 		$query = "SELECT s.Nome FROM Segnali s, SegnaliClassi sc WHERE s.CodAuto = sc.Segnale AND sc.Classe=$class[1]";
 		$list = mysql_query($query, $conn) or fail("query fallita");
-		while($row = mysql_fetch_row($list))
-			$str .= "<<signal>> $row[0]\n";
-			//fwrite($file, "<<signal>> $row[0]\n");
-		$str .= "\n}\nhide circle\n@enduml";
-		//fwrite($file, "\n}\nhide circle\n@enduml");
-		$zip->addFromString($filename, $str);
-		//fclose($file);
+                while($row = mysql_fetch_row($list))
+			fwrite($file, "<<signal>> $row[0]");
+		fwrite($file, "\n}\nhide circle\n@enduml");
+		fclose($file);
 	}
-	//fclose($file);
-	//exec("rm ./ClassesUML.zip");
+	fclose($file);
+	exec("rm ./ClassesUML.zip");
 	//exec("plantuml -charset UTF-8 -o \"./images\" \"./uml/*.uml\" ");
-	//exec("zip -r ./ClassesUML.zip ./uml");
-	//exec("rm -rf ./images");
-	//exec("rm -rf ./uml");
-	$zip->close();
-	$file = fopen($zname, "rb");
+	exec("zip -r ./ClassesUML.zip ./uml");
+	exec("rm -rf ./images");
+	exec("rm -rf ./uml");
+	$file = fopen("./ClassesUML.zip", "rb");
 	fpassthru($file);
 	fclose($file);
-	unlink($zname);
 }

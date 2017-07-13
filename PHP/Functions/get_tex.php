@@ -11,7 +11,7 @@ function classiRequisitiTex($conn, $row){
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
-\\hyperref[\\nogloxy{{$row[1]}}]{\\nogloxy{\\texttt{{$prefix}}}} & $requi_row[0]
+\\hyperref[{$row[1]}]{\\texttt{{$prefix}}} & $requi_row[0]
 END;
 	while($requi_row=mysql_fetch_row($requi)){
 echo<<<END
@@ -36,7 +36,7 @@ function componentiRequisitiTex($conn, $row){
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
-\\hyperref[\\nogloxy{{$row[1]}}]{\\nogloxy{\\texttt{{$prefix}}}} & $requi_row[0]
+\\hyperref[{$row[1]}]{\\texttt{{$prefix}}} & $requi_row[0]
 END;
 	while($requi_row=mysql_fetch_row($requi)){
 echo<<<END
@@ -202,8 +202,8 @@ END;
 function packageClassiCommonTex($conn, $riga, $flag){
 echo<<<END
 
-\\subsubsubsection{\\nogloxy{{$riga[1]}}}
-\\label{\\nogloxy{{$riga[1]}}}
+\\subsubsubsection{{$riga[1]}}
+\\label{{$riga[1]}}
 END;
 
 	if(($flag==true) && ($riga[4]!=null)){
@@ -211,8 +211,8 @@ echo<<<END
 
 \\begin{figure}[h]
 \\centering
-\\nogloxy{\\includegraphics[scale=0.4,keepaspectratio]{diagrammi/classi/{{$riga[4]}}.pdf}}
-\\caption{\\nogloxy{{$riga[1]}}}
+\\includegraphics[scale=0.4,keepaspectratio]{diagrammi/classi/{{$riga[4]}}.pdf}
+\\caption{{$riga[1]}}
 \\end{figure}
 \\FloatBarrier
 END;
@@ -241,12 +241,12 @@ echo<<<END
 
 \\item \\textbf{Classi ereditate}:
 \\begin{itemize}
-\\item \\hyperref[\\nogloxy{{$riga_sub[0]}}]{\\nogloxy{\\texttt{{$riga_sub[1]}}}}
+\\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
 END;
 		while($riga_sub=mysql_fetch_row($padri)){
 echo<<<END
 
-\\item \\hyperref[\\nogloxy{{$riga_sub[0]}}]{\\nogloxy{\\texttt{{$riga_sub[1]}}}}
+\\item \\hyperref[{{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
 END;
 		}
 echo<<<END
@@ -265,12 +265,12 @@ echo<<<END
 
 \\item \\textbf{Sottoclassi}:
 \\begin{itemize}
-\\item \\hyperref[\\nogloxy{{$riga_sub[0]}}]{\\nogloxy{\\texttt{{$riga_sub[1]}}}}
+\\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
 END;
 		while($riga_sub=mysql_fetch_row($subclassi)){
 echo<<<END
 
-\\item \\hyperref[\\nogloxy{{$riga_sub[0]}}]{\\nogloxy{\\texttt{{$riga_sub[1]}}}}
+\\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
 END;
 		}
 echo<<<END
@@ -299,28 +299,28 @@ END;
 		if($riga_in[0]!=null){
 echo<<<END
 
-\\item \\textit{IN} \\hyperref[\\nogloxy{{$riga_in[0]}}]{\\nogloxy{\\texttt{{$riga_in[1]}}}}\\\
+\\item \\textit{IN} \\hyperref[{$riga_in[0]}]{\\texttt{{$riga_in[1]}}}\\\
 $riga_in[2]
 END;
 		}
 		while($riga_in=mysql_fetch_row($in)){
 echo<<<END
 
-\\item \\textit{IN} \\hyperref[\\nogloxy{{$riga_in[0]}}]{\\nogloxy{\\texttt{{$riga_in[1]}}}}\\\
+\\item \\textit{IN} \\hyperref[{$riga_in[0]}]{\\texttt{{$riga_in[1]}}}\\\
 $riga_in[2]
 END;
 		}
 		if($riga_out[0]!=null){
 echo<<<END
 
-\\item \\textit{OUT} \\hyperref[\\nogloxy{{$riga_out[0]}}]{\\nogloxy{\\texttt{{$riga_out[1]}}}}\\\
+\\item \\textit{OUT} \\hyperref[{$riga_out[0]}]{\\texttt{{$riga_out[1]}}}\\\
 $riga_out[2]
 END;
 		}
 		while($riga_out=mysql_fetch_row($out)){
 echo<<<END
 
-\\item \\textit{OUT} \\hyperref[\\nogloxy{{$riga_out[0]}}]{\\nogloxy{\\texttt{{$riga_out[1]}}}}\\\
+\\item \\textit{OUT} \\hyperref[{$riga_out[0]}]{\\texttt{{$riga_out[1]}}}\\\
 $riga_out[2]
 END;
 		}
@@ -354,13 +354,13 @@ END;
 		if($row_attr[0]=="#"){
 echo<<<END
 
-\\item \\nogloxy{\\texttt{\\{$row_attr[0]} {$row_attr[1]}: {$row_attr[2]}}}
+\\item \\texttt{\\{$row_attr[0]} {$row_attr[1]}: {$row_attr[2]}}
 END;
 		}
 		else{
 echo<<<END
 
-\\item \\nogloxy{\\texttt{{$row_attr[0]} {$row_attr[1]}: {$row_attr[2]}}}
+\\item \\texttt{{$row_attr[0]} {$row_attr[1]}: {$row_attr[2]}}
 END;
 		}
 echo<<<END
@@ -371,13 +371,13 @@ END;
 			if($row_attr[0]=="#"){
 echo<<<END
 
-\\item \\nogloxy{\\texttt{\\{$row_attr[0]} {$row_attr[1]}: {$row_attr[2]}}}
+\\item \\texttt{\\{$row_attr[0]} {$row_attr[1]}: {$row_attr[2]}}
 END;
 			}
 			else{
 echo<<<END
 
-\\item \\nogloxy{\\texttt{{$row_attr[0]} {$row_attr[1]}: {$row_attr[2]}}}
+\\item \\texttt{{$row_attr[0]} {$row_attr[1]}: {$row_attr[2]}}
 END;
 			}
 echo<<<END
@@ -405,13 +405,13 @@ END;
 		if($row_met[1]=="#"){
 echo<<<END
 
-\\item \\nogloxy{\\texttt{\\{$row_met[1]} {$row_met[2]}(
+\\item \\texttt{\\{$row_met[1]} {$row_met[2]}(
 END;
 		}
 		else{
 echo<<<END
 
-\\item \\nogloxy{\\texttt{{$row_met[1]} {$row_met[2]}(
+\\item \\texttt{{$row_met[1]} {$row_met[2]}(
 END;
 		}
 		$conn=sql_conn();
@@ -440,7 +440,7 @@ echo<<<END
 END;
 		}
 echo<<<END
-}}
+}
 \\\ {$row_met[4]}
 END;
 		if($row_desc=mysql_fetch_row($par_desc)){
@@ -448,13 +448,13 @@ echo<<<END
 
 \\\ \\textbf{Parametri}:
 \\begin{itemize}
-\\item \\nogloxy{\\texttt{{$row_desc[0]}: {$row_desc[1]}}}
+\\item \\texttt{{$row_desc[0]}: {$row_desc[1]}}
 \\\ {$row_desc[2]}
 END;
 			while($row_desc=mysql_fetch_row($par_desc)){
 echo<<<END
 
-\\item \\nogloxy{\\texttt{{$row_desc[0]}: {$row_desc[1]}}}
+\\item \\texttt{{$row_desc[0]}: {$row_desc[1]}}
 \\\ {$row_desc[2]}
 END;
 			}
@@ -467,13 +467,13 @@ END;
 			if($row_met[1]=="#"){
 echo<<<END
 
-\\item \\nogloxy{\\texttt{\\{$row_met[1]} {$row_met[2]}(
+\\item \\texttt{\\{$row_met[1]} {$row_met[2]}(
 END;
 			}
 			else{
 echo<<<END
 
-\\item \\nogloxy{\\texttt{{$row_met[1]} {$row_met[2]}(
+\\item \\texttt{{$row_met[1]} {$row_met[2]}(
 END;
 			}
 			$conn=sql_conn();
@@ -502,7 +502,7 @@ echo<<<END
 END;
 			}
 echo<<<END
-}}
+}
 \\\ {$row_met[4]}
 END;
 			if($row_desc=mysql_fetch_row($par_desc)){
@@ -510,13 +510,13 @@ echo<<<END
 
 \\\ \\textbf{Parametri}:
 \\begin{itemize}
-\\item \\nogloxy{\\texttt{{$row_desc[0]}: {$row_desc[1]}}}
+\\item \\texttt{{$row_desc[0]}: {$row_desc[1]}}
 \\\ {$row_desc[2]}
 END;
 				while($row_desc=mysql_fetch_row($par_desc)){
 echo<<<END
 
-\\item \\nogloxy{\\texttt{{$row_desc[0]}: {$row_desc[1]}}}
+\\item \\texttt{{$row_desc[0]}: {$row_desc[1]}}
 \\\ {$row_desc[2]}
 END;
 				}
@@ -534,20 +534,15 @@ END;
 }
 
 function requisitiTex($conn, $row){
+$query = "SELECT u.IdUC
+					FROM RequisitiUC ru, UseCase u
+					WHERE ru.CodReq = $row[0] AND ru.UC = u.CodAuto";
+$res = mysql_query($query, $conn);
 echo<<<END
-
-\\hypertarget{{$row[1]}}{{$row[1]}} & $row[2] &
+\\hypertarget{{$row[1]}}{{$row[1]}} & $row[2] & $row[3]
 END;
-	if($row[3]==0){
-echo<<<END
- \\textcolor{Red}{\\textit{Non Soddisfatto}}
-END;
-	}
-	else{
-echo<<<END
- \\textcolor{Green}{\\textit{Soddisfatto}}
-END;
-	}
+while($result = mysql_fetch_row($res))
+	echo ", $result[0]";
 echo<<<END
 \\\ \\hline
 
@@ -565,14 +560,14 @@ function requisitiClassiTex($conn, $row){
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
-$row[1] & \\hyperref[\\nogloxy{{$cl_row[0]}}]{\\nogloxy{\\texttt{{$prefix}}}}
+$row[1] & \\hyperref[{$cl_row[0]}]{\\texttt{{$prefix}}}
 END;
 	while($cl_row=mysql_fetch_row($cl)){
 		$prefix=$cl_row[0];
 		$prefix=fixIntoBorder($prefix);
 echo<<<END
 \\\
-& \\hyperref[\\nogloxy{{$cl_row[0]}}]{\\nogloxy{\\texttt{{$prefix}}}}
+& \\hyperref[{$cl_row[0]}]{\\texttt{{$prefix}}}
 END;
 	}
 echo<<<END
@@ -592,14 +587,14 @@ function requisitiComponentiTex($conn, $row){
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
-$row[1] & \\hyperref[\\nogloxy{{$pkg_row[0]}}]{\\nogloxy{\\texttt{{$prefix}}}}
+$row[1] & \\hyperref[{$pkg_row[0]}]{\\texttt{{$prefix}}}
 END;
 	while($pkg_row=mysql_fetch_row($pkg)){
 		$prefix=$pkg_row[0];
 		$prefix=fixIntoBorder($prefix);
 echo<<<END
 \\\
-& \\hyperref[\\nogloxy{{$pkg_row[0]}}]{\\nogloxy{\\texttt{{$prefix}}}}
+& \\hyperref[{$pkg_row[0]}]{\\texttt{{$prefix}}}
 END;
 	}
 echo<<<END
@@ -637,28 +632,32 @@ echo<<<END
 END;
 	if($row[3]==0){
 echo<<<END
- \\textit{Non Implementato}
+ \\textcolor{red}{\\textit{Non Implementato}} &
 END;
 	}
 	else{
-		if($row[4]==0){
 echo<<<END
- \\textit{Non Eseguito}
+		\\textcolor{green}{\\textit{Implementato}} &
+END;
+	}
+	if($row[4]==0){
+echo<<<END
+ \\textcolor{red}{\\textit{Non Eseguito}}
 END;
 		}
 		else{
 			if($row[5]==0){
 echo<<<END
- \\textcolor{Red}{\\textit{Non Superato}}
+ \\textcolor{red}{\\textit{Non Superato}}
 END;
 			}
 			else{
 echo<<<END
- \\textcolor{Green}{\\textit{Superato}}
+ \\textcolor{green}{\\textit{Superato}}
 END;
 			}
 		}
-	}
+
 echo<<<END
 \\\ \\hline
 END;

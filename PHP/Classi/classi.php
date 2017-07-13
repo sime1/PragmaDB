@@ -12,7 +12,7 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$conn=sql_conn();
-	
+
 	$query="SELECT c.CodAuto,c.PrefixNome,c.Nome,c.Descrizione,c.Utilizzo,p.PrefixNome,c.UML,p.CodAuto
 			FROM Classe c JOIN Package p ON c.ContenutaIn=p.CodAuto
 			ORDER BY c.PrefixNome";
@@ -29,12 +29,13 @@ echo<<<END
 					<aside id="export" class="widget">
 						<h4 class="widget-title">Esporta in LaTeX (DP)</h4>
 						<ul>
-							<li><a class="link-color-pers" href="$absurl/Package/LaTeX/getpackageclassidpbe.php">Package/Classi DP (Back-End)</a></li>
-							<li><a class="link-color-pers" href="$absurl/Package/LaTeX/getpackageclassidpfe.php">Package/Classi DP (Front-End)</a></li>
 							<li><a class="link-color-pers" href="$absurl/Classi/LaTeX/gettracciamentoclassirequisiti.php">Tracciamento Classi-Requisiti</a></li>
 							<li><a class="link-color-pers" href="$absurl/Classi/LaTeX/gettracciamentorequisiticlassi.php">Tracciamento Requisiti-Classi</a></li>
 							<li><a class="link-color-pers" href="$absurl/Package/LaTeX/gettracciamentocomponentirequisiti.php">Tracciamento Componenti-Requisiti</a></li>
 							<li><a class="link-color-pers" href="$absurl/Package/LaTeX/gettracciamentorequisiticomponenti.php">Tracciamento Requisiti-Componenti</a></li>
+							<li><a class="link-color-pers" href="$absurl/Classi/generateImages.php">Genera immagini</a></li>
+							<li><a class="link-color-pers" href="$absurl/Classi/getclassi.php">Genera descrizione classi</a></li>
+							<li><a class="link-color-pers" href="$absurl/Classi/Segnali/segnali.php">Segnali</a></li>
 						</ul>
 					</aside>
 				</div>
@@ -54,7 +55,7 @@ echo<<<END
 							<th>Nome</th>
 							<th>Descrizione</th>
 							<th>Utilizzo</th>
-							<th>ContenutaIn</th>
+							<th>Package</th>
 							<th>Diagramma</th>
 							<th>Operazioni</th>
 						</tr>
@@ -76,6 +77,7 @@ echo<<<END
 									<li><a class="link-color-pers" href="$absurl/Classi/idrequisiticorrelati.php?id=$row[0]">Requisiti</a></li>
 									<li><a class="link-color-pers" href="$absurl/Classi/modificaclasse.php?id=$row[0]">Modifica</a></li>
 									<li><a class="link-color-pers" href="$absurl/Classi/eliminaclasse.php?id=$row[0]">Elimina</a></li>
+                  <li><a class="link-color-pers" href="$absurl/Classi/header.php?id=$row[0]">Header</a></li>
 								</ul>
 							</td>
 						</tr>

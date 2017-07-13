@@ -24,6 +24,14 @@ function multiple_sel(cod,ind){
 	if(cod==9){
 		str="met";
 	}
+	if(cod==10)
+	{
+		str="attore-sec";
+	}
+	if(cod==11)
+	{
+		str="sig";
+	}
 	var cont=0;
 	var index=1;
 	var sel=document.getElementById(str+ind);

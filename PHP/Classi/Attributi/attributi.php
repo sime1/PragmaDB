@@ -35,6 +35,8 @@ echo<<<END
 					<aside id="export" class="widget">
 						<h4 class="widget-title">Link Utili</h4>
 						<ul>
+							<li><a class="link-color-pers" href="$absurl/Classi/Metodi/metodi.php?cl=$cl">Vai ai Metodi</a></li>
+							<li><a class="link-color-pers" href="$absurl/Classi/dettaglioclasse.php?id=$cl">Vai alla classe</a></li>
 							<li><a class="link-color-pers" href="$absurl/Classi/classi.php">Torna a Tabella Classi</a></li>
 						</ul>
 					</aside>

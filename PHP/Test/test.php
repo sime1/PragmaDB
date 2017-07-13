@@ -28,9 +28,9 @@ else{
 				FROM Test t JOIN Package p ON t.Package=p.CodAuto
 				WHERE t.Tipo='Integrazione'
 				ORDER BY CONVERT(SUBSTRING(t.IdTest,3),UNSIGNED INT)";
-	$queries[]="SELECT t.CodAuto, t.IdTest, t.Descrizione, t.Implementato, t.Eseguito, t.Esito, t.Tipo
-				FROM Test t
-				WHERE t.Tipo='Unita'
+	$queries[]="SELECT t.CodAuto, t.IdTest, t.Descrizione, t.Implementato, t.Eseguito, t.Esito, t.Tipo, CONCAT(c.PrefixNome, '::', m.Nome)
+				FROM Test t, Metodo m, TestMetodi tm, Classe c
+				WHERE t.Tipo='Unita' AND t.CodAuto = tm.CodTest AND m.CodAuto = tm.CodMet AND m.Classe = c.CodAuto
 				ORDER BY CONVERT(SUBSTRING(t.IdTest,3),UNSIGNED INT)";
 	$title="Test";
 	startpage_builder($title);

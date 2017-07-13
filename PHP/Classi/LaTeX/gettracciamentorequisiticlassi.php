@@ -19,7 +19,7 @@ else{
 	
 	$conn=sql_conn();
 	//$query_ord="CALL sortForest('Requisiti')";
-	$query_requi="SELECT DISTINCT r.CodAuto, r.IdRequisito
+	$query_requi="SELECT DISTINCT r.CodAuto, r.IdRequisito, h.Position
 				FROM (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) JOIN RequisitiClasse rc ON r.CodAuto=rc.CodReq
 				ORDER BY h.Position";
 	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));

@@ -8,6 +8,8 @@ session_start();
 
 $absurl=urlbasesito();
 
+date_default_timezone_set("Europe/Rome");
+
 if(empty($_SESSION['user'])){
 	header("Location: $absurl/error.php");
 }
@@ -153,7 +155,7 @@ END;
 			else{
 				$query="CALL insertRequisito('$_SESSION[user]','$descf',$tipof,$importanzaf,'$padref','$statof','$implementatof','$soddisfattof','$fontef','$ucf')";
 			}
-			$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+			$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn) . $_SESSION['user']);
 			$title="Requisito Inserito";
 			startpage_builder($title);
 echo<<<END

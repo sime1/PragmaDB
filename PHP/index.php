@@ -26,7 +26,7 @@ else{
 echo<<<END
 
 			<div id="immagine">
-				<img src="$absurl/Immagini/pragma.png" alt="Logo Pragma" />
+				<img src="$absurl/Immagini/logo_full.png" alt="Logo Pragma" />
 			</div>
 			<div id="form">
 				<h1>Autenticazione</h1>
@@ -34,11 +34,11 @@ echo<<<END
 					<fieldset>
 						<p>
 							<label for="username">Username:</label>
-							<input type="text" id="username" name="username" maxlength="4" />
+							<input type="text" id="username" name="username" maxlength="10" />
 						</p>
 						<p>
 							<label for="password">Password:</label>
-							<input type="password" id="password" name="password" maxlength="8" />
+							<input type="password" id="password" name="password" maxlength="40" />
 						</p>
 						<p>
 							<input type="submit" id="submit" name="submit" value="Accedi" />
@@ -46,6 +46,7 @@ echo<<<END
 						</p>
 					</fieldset>
 				</form>
+				<a href="$absurl/register.php">Registrazione</a>
 			</div>
 END;
 		endpage_builder();

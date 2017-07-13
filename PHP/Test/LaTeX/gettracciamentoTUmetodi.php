@@ -52,7 +52,7 @@ END;
 			}
 			else{*/
 echo<<<END
- & \\nogloxy{\\texttt{{$prefix}}}\\\
+ & \\texttt{{$prefix}}\\\
 END;
 		}
 echo<<<END

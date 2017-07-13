@@ -2,11 +2,13 @@
 
 require('../Functions/mysql_fun.php');
 require('../Functions/page_builder.php');
-require('../Functions/urlLab.php'); 
+require('../Functions/urlLab.php');
 
 session_start();
 
 $absurl=urlbasesito();
+
+date_default_timezone_set("Europe/Rome");
 
 if(empty($_SESSION['user'])){
 	header("Location: $absurl/error.php");
@@ -216,7 +218,7 @@ echo<<<END
 								<textarea rows="2" cols="0" id="util" name="util" maxlength="10000"></textarea>
 							</p>
 							<p>
-								<label for="padre">ContenutaIn*:</label>
+								<label for="padre">Package*:</label>
 								<select id="padre" name="padre">
 									<option value="N/D">N/D</option>
 END;
@@ -224,7 +226,7 @@ END;
 		$query="SELECT p.CodAuto,p.PrefixNome
 				FROM Package p
 				ORDER BY p.PrefixNome"; //Query per recuperare l'id di tutti i package
-					//in modo che $row[0] sia l'id e che $row[1] sia il [prefisso::]nome 
+					//in modo che $row[0] sia l'id e che $row[1] sia il [prefisso::]nome
 		$father=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
 		while($row=mysql_fetch_row($father)){
 			if($row[0]!=null){

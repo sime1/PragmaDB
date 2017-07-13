@@ -40,7 +40,7 @@ END;
 				   ORDER BY CONVERT(SUBSTRING(t.IdTest,3),UNSIGNED INT)";
 		$tu=mysql_query($query_tu,$conn) or fail("Query fallita: ".mysql_error($conn));
 echo<<<END
-\\nogloxy{\\texttt{{$prefix}}}
+\\texttt{{$prefix}}
 END;
 		while($row_tu = mysql_fetch_row($tu)){
 echo<<<END

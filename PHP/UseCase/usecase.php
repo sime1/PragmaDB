@@ -30,6 +30,7 @@ echo<<<END
 						<h4 class="widget-title">Esporta in LaTeX</h4>
 						<ul>
 							<li><a class="link-color-pers" href="$absurl/UseCase/getusecase.php">Tabella Use Case</a></li>
+							<li><a class="link-color-pers" href="$absurl/UseCase/generateImages.php">Immagini Use Case</a></li>
 						</ul>
 					</aside>
 				</div>
@@ -41,6 +42,9 @@ echo<<<END
 						</ul>
 						<ul>
 							<li><a class="link-color-pers" href="$absurl/UseCase/usecasesolitari.php">Use Case Solitari</a></li>
+						</ul>
+						<ul>
+							<li><a class="link-color-pers" href="$absurl/UseCase/confrontorequisiti.php">Confronto con requsiti</a></li>
 						</ul>
 					</aside>
 				</div>

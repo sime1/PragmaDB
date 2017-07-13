@@ -43,12 +43,14 @@ echo<<<END
 						<ul>
 							<li><a class="link-color-pers" href="$absurl/Requisiti/inseriscirequisito.php">Inserisci Requisito</a></li>
 							<li><a class="link-color-pers" href="$absurl/Requisiti/requisitisolitari.php">Requisiti Solitari</a></li>
+							<li><a class="link-color-pers" href="$absurl/Requisiti/confrontouc.php">Confronto con UseCase correlati</a></li>
 						</ul>
 					</aside>
 				</div>
 				<table>
 					<thead>
 						<tr>
+							<th>Numero Requisito</th>
 							<th>IdRequisito</th>
 							<th>Descrizione</th>
 							<th>Tipo</th>
@@ -63,11 +65,13 @@ echo<<<END
 					</thead>
 					<tbody>
 END;
+$cont = 1;
 	while($row=mysql_fetch_row($req)){
 echo<<<END
 
-						<tr>
+						<tr><td>$cont</td>
 END;
+$cont++;
 		requisito_table($row);
 echo<<<END
 

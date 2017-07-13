@@ -2,9 +2,11 @@
 
 require('../../Functions/mysql_fun.php');
 require('../../Functions/page_builder.php');
-require('../../Functions/urlLab.php'); 
+require('../../Functions/urlLab.php');
 
 session_start();
+
+date_default_timezone_set("Europe/Rome");
 
 $absurl=urlbasesito();
 
@@ -243,6 +245,7 @@ echo<<<END
 							<input type="hidden" id="old_tipo" name="old_tipo" value="$metdb[3]" />
 							<input type="hidden" id="old_desc" name="old_desc" value="$metdb[4]" />
 							<input type="hidden" id="cl" name="cl" value="$metdb[6]" />
+							<input type="hidden" id="num_signal" value="$fnum_signal" />
 							<input type="hidden" id="timestamp" name="timestamp" value="$timestamp" />
 							<p>
 								<input type="submit" id="submit" name="submit" value="Modifica" />

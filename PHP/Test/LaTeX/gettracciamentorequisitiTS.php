@@ -18,7 +18,7 @@ else{
 	
 	$conn=sql_conn();
 	//$query_ord="CALL sortForest('Requisiti')";
-	$query_requi="SELECT r.IdRequisito, CONCAT('TV',SUBSTRING(r.IdRequisito,2))
+	$query_requi="SELECT r.IdRequisito, CONCAT('TS',SUBSTRING(r.IdRequisito,2))
 			   FROM (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) JOIN Test t ON r.CodAuto=t.Requisito
 			   WHERE t.Tipo='Sistema'
 			   ORDER BY h.Position";

@@ -34,7 +34,7 @@ END;
 	while($row_pkg=mysql_fetch_row($pkg)){
 echo<<<END
 
-\\nogloxy{\\texttt{{$row_pkg[0]}}} & \\hyperlink{{$row_pkg[1]}}{{$row_pkg[1]}}\\\ \\hline
+\\texttt{{$row_pkg[0]}} & \\hyperlink{{$row_pkg[1]}}{{$row_pkg[1]}}\\\ \\hline
 END;
 	}
 echo<<<END

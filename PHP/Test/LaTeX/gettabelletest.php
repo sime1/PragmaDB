@@ -16,11 +16,11 @@ else{
 	header('Content-Disposition: attachment; filename="tabelleTest.tex"');
 	header('Expires: 0');
 	header('Cache-Control: no-cache, must-revalidate');
-	
+
 	$tipi=array('Validazione','Sistema','Integrazione','Unità');
 	$hook=array('validazione','sistema','integrazione','unita');
 	$sections=array('Test di Validazione','Test di Sistema','Test di Integrazione','Test di Unità');
-	$headers=array('Id Test','Descrizione','Stato');
+	$headers=array('Id Test','Descrizione','Implementato','Eseguito');
 	//$query_ord="CALL sortForest('Requisiti')";
 	$queries[]="SELECT t.CodAuto, CONCAT('TV',SUBSTRING(r.IdRequisito,2)), t.Descrizione, t.Implementato, t.Eseguito, t.Esito
 				FROM Test t JOIN (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) ON t.Requisito=r.CodAuto
@@ -46,11 +46,11 @@ else{
 		if($row[0]!=null){
 echo<<<END
 \\subsection{{$sections[$ind]}}
-\\input{sezioni/test_{$hook[$ind]}.tex}
+I test di {$hook[$ind]} saranno identificati secondo quanto riportato nel documento \\NPdoc{}.
 \\normalsize
-\\begin{longtable}{|c|>{}m{8cm}|c|}
-\\hline 
-\\textbf{{$headers[0]}} & \\textbf{{$headers[1]}} & \\textbf{{$headers[2]}}\\\
+\\begin{longtable}{|c|>{}m{8cm}|c|c|}
+\\hline
+\\textbf{{$headers[0]}} & \\textbf{{$headers[1]}} & \\textbf{{$headers[2]}} & \\textbf{{$headers[3]}}\\\
 \\hline
 \\endhead
 END;

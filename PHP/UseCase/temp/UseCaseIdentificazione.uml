@@ -1,0 +1,4 @@
+@startuml
+left to right direction
+:Ospite:---(Comunicazione nome e cognome)
+@enduml

@@ -16,7 +16,7 @@ else{
 	header('Content-Disposition: attachment; filename="tracciamentoRequisitiFonti.tex"');
 	header('Expires: 0');
 	header('Cache-Control: no-cache, must-revalidate');
-	
+
 	$conn=sql_conn();
 	//$query_ord="CALL sortForest('Requisiti')";
 	$query_requi="SELECT r1.CodAuto,r1.IdRequisito,f.Nome
@@ -25,10 +25,9 @@ else{
 	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
 	$requi=mysql_query($query_requi,$conn) or fail("Query fallita: ".mysql_error($conn));
 echo<<<END
-\\subsection{Tracciamento Requisiti-Fonti}
 \\normalsize
 \\begin{longtable}{|>{\centering}m{5cm}|m{5cm}<{\centering}|}
-\\hline 
+\\hline
 \\textbf{Id Requisito} & \\textbf{Fonti}\\\
 \\hline
 \\endhead

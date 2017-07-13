@@ -37,10 +37,8 @@ echo<<<END
 					<aside id="links" class="widget">
 						<h4 class="widget-title">Link Utili</h4>
 						<ul>
-							<li><a class="link-color-pers" href="https://bitbucket.org/">Bitbucket</a></li>
-							<li><a class="link-color-pers" href="">Comandi Custom LaTeX</a></li>
-							<li><a class="link-color-pers" href="https://www.hostedredmine.com">Hosted Redmine</a></li>
-							<li><a class="link-color-pers" href="https://groups.yahoo.com/neo">Yahoo! Groups</a></li>
+							<li><a class="link-color-pers" href="https://github.com/CoCodeSWE">Repo GitHub</a></li>
+							<li><a class="link-color-pers" href="https://app.asana.com">Asana</a></li>
 						</ul>
 					</aside>
 				</div>

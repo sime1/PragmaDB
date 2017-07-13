@@ -16,23 +16,22 @@ else{
 	header('Content-Disposition: attachment; filename="tracciamentoFontiRequisiti.tex"');
 	header('Expires: 0');
 	header('Cache-Control: no-cache, must-revalidate');
-	
+
 	$conn=sql_conn();
 	$query_fonti="SELECT DISTINCT f.CodAuto,f.Nome
 					FROM Fonti f JOIN Requisiti r ON f.CodAuto=r.Fonte
 					ORDER BY f.Nome";
 	//$query_ord="CALL sortForest('UseCase')";
-	$query_uc="SELECT DISTINCT u.CodAuto,u.IdUC
+	$query_uc="SELECT DISTINCT u.CodAuto,u.IdUC, h.Position
 				FROM (_MapUseCase h JOIN UseCase u ON h.CodAuto=u.CodAuto) JOIN RequisitiUC ruc ON u.CodAuto=ruc.UC
 				ORDER BY h.Position";
 	$fonti=mysql_query($query_fonti,$conn) or fail("Query fallita: ".mysql_error($conn));
 	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
 	$uc=mysql_query($query_uc,$conn) or fail("Query fallita: ".mysql_error($conn));
 echo<<<END
-\\subsection{Tracciamento Fonti-Requisiti}
 \\normalsize
 \\begin{longtable}{|>{\centering}m{5cm}|m{5cm}<{\centering}|}
-\\hline 
+\\hline
 \\textbf{Fonte} & \\textbf{Id Requisiti}\\\
 \\hline
 \\endhead

@@ -5,10 +5,7 @@ require('../Functions/urlLab.php');
 
 session_start();
 
-$zip = new ZipArchive();
-$zname = tempnam('.', 'tmp');
-$filename = '';
-if(empty($_SESSION['user']) || ($zip->open($zname, ZipArchive::CREATE)!==TRUE))
+if(empty($_SESSION['user']))
 {
 	header("Location: $absurl/error.php");
 }
@@ -30,22 +27,19 @@ else
 		ORDER BY nomePadre, IdFiglio";
 	$list=mysql_query($query, $conn) or fail("Query falita: ".mysql_error($conn));
 	$old_par = "nome che uno usecase non avrà mai";
-	//$file = null;
-	//exec("mkdir ./uml");
+	$file = null;
+	exec("mkdir ./uml");
 	while($row=mysql_fetch_row($list))
 	{
 		if($old_par != $row[3])//cambiato use case padre, cambio file
 		{
-			if(!empty($line))
+			if($file)
 			{
-				$line .= "}\n@enduml";
-				$zip->addFromString($filename, $line);
-				$line = '';
-				//fwrite($file, "}\n@enduml");
-				//fclose($file);
+				fwrite($file, "}\n@enduml");
+				fclose($file);
 			}
-			$filename = "uml/UseCase" . str_replace('.', '', $row[3]) . ".uml";
-			//$file = fopen($filename, "wb");
+			$filename = "./uml/UseCase" . str_replace('.', '', $row[3]) . ".uml";
+			$file = fopen($filename, "wb");
 			$line = "@startuml\nscale 1000*1000\nleft to right direction\nskinparam packageStyle rect\n";
 			$query="SELECT DISTINCT a.nome
 			  FROM Attori a, AttoriUC au, UseCase f
@@ -75,11 +69,11 @@ else
 					if(!empty($ext))
 						$line .= "($ext) <.. ($res[2]): <<extend>>\n";
 			}
-			//fwrite($file, $line);
+			fwrite($file, $line);
 		}
 		$old_par = $row[3];
 
-		$line .= "( $row[4] - $row[1] ) as ($row[4])\n";
+		$line = "( $row[4] - $row[1] ) as ($row[4])\n";
 		//linee comunicazione
 		if(empty($row[5]) && empty($row[6]))
 		{
@@ -89,20 +83,16 @@ else
 				$line .= "($row[4])--:$row[2]:\n";
 		}
 
-		//fwrite($file, $line);
+		fwrite($file, $line);
 	}
-	$line .= "@enduml";
-	//fwrite($file, "@enduml");
-	//fclose($file);
-	$zip->addFromString($filename, $line);	
-	$zip->close();
-	//exec("rm ./useCasesUML.zip");
-	//exec("plantuml -charset UTF-8 -o \"./images\" \"./uml/*.uml\" ");
-	//exec("zip -r ./useCasesUML.zip ./uml");
-	//exec("rm -rf ./images");
-	//exec("rm -rf ./uml");
-	$file = fopen($zname, "rb");
+	fwrite($file, "@enduml");
+	fclose($file);
+	exec("rm ./useCasesUML.zip");
+	exec("plantuml -charset UTF-8 -o \"./images\" \"./uml/*.uml\" ");
+	exec("zip -r ./useCasesUML.zip ./uml");
+	exec("rm -rf ./images");
+	exec("rm -rf ./uml");
+	$file = fopen("./useCasesUML.zip", "rb");
 	fpassthru($file);
 	fclose($file);
-	unlink($zname);
 }
