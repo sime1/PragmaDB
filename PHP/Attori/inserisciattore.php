@@ -14,7 +14,8 @@ if(empty($_SESSION['user'])){
 else{
 	if(isset($_REQUEST['submit'])){
 		$nomef=$_POST["nome"];
-		$descf=$_POST["desc"];
+    $descf=$_POST["desc"];
+    $secondaryf=$_POST["secondary"];
 		$err_nome=false;
 		$errori=0;
 		if($nomef==null){
@@ -36,7 +37,7 @@ END;
 			$nomef=mysql_escape_string($nomef);
 			$descf=mysql_escape_string($descf);
 			$conn=sql_conn();
-			$query="CALL insertAttore('$nomef','$descf');";
+			$query="CALL insertAttore('$nomef','$descf', '$secondaryf');";
 			$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
 			$title="Attore Inserito";
 			startpage_builder($title);
@@ -67,7 +68,11 @@ echo<<<END
 							<p>
 								<label for="desc">Descrizione:</label>
 								<textarea rows="2" cols="0" id="desc" name="desc" maxlength="10000"></textarea>
-							</p>
+              </p>
+              <p>
+                <label for="secondary">Secondario:</label>
+                <input type="checkbox" id="secondary" name="secondary"/>
+              </p>
 							<p>
 								<input type="submit" id="submit" name="submit" value="Inserisci" />
 								<input type="reset" id="reset" name="reset" value="Cancella" />

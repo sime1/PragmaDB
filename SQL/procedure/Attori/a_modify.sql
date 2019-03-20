@@ -17,9 +17,9 @@ DELIMITER $
 
 /*l'utente non può modificare direttamente l'idfonte*/
 DROP PROCEDURE IF EXISTS modifyAttore $
-CREATE PROCEDURE modifyAttore (IN CodAuto    INT(5), Nome    VARCHAR(20), Descrizione    VARCHAR(10000) )
+CREATE PROCEDURE modifyAttore (IN CodAuto    INT(5), Nome    VARCHAR(20), Descrizione    VARCHAR(10000), Secondario BOOL )
 BEGIN
     START TRANSACTION;
-        UPDATE Attori f SET f.Nome = Nome, f.Descrizione = Descrizione, f.Time=CURRENT_TIMESTAMP WHERE f.CodAuto = CodAuto; 
+        UPDATE Attori f SET f.Nome = Nome, f.Descrizione = Descrizione, f.Time=CURRENT_TIMESTAMP, f.Secondario = Secondario WHERE f.CodAuto = CodAuto; 
     COMMIT;
 END$

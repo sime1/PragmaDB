@@ -82,6 +82,7 @@ CREATE TABLE Attori (
     CodAuto     INT(5) PRIMARY KEY AUTO_INCREMENT,
     Nome   VARCHAR(20) UNIQUE NOT NULL,
     Descrizione VARCHAR(10000) DEFAULT NULL,
+    Secondario BOOL NOT NULL,
     Time DATETIME
 ) ENGINE=InnoDB;
 

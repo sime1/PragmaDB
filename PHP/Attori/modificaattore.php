@@ -17,7 +17,8 @@ else{
 	if(isset($_REQUEST['submit'])){
 		$id=$_GET['id'];
 		$nomef=$_POST["nome"];
-		$descf=$_POST["desc"];
+    $descf=$_POST["desc"];
+    $secondaryf=$_POST["secondary"];
 		$timestampf=$_POST["timestamp"];
 		$err_nome=false;
 		$errori=0;
@@ -58,7 +59,7 @@ echo<<<END
 END;
 				}
 				else{
-					$query="CALL modifyAttore('$id','$nomef','$descf');";
+					$query="CALL modifyAttore('$id','$nomef','$descf','$secondaryf');";
 					$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
 					$title="Attore Modificato";
 					startpage_builder($title);
@@ -113,10 +114,14 @@ echo<<<END
 								<textarea rows="2" cols="0" id="desc" name="desc" maxlength="10000">$row[2]</textarea>
 							</p>
 							<input type="hidden" id="timestamp" name="timestamp" value="$timestamp" />
+              <p>
+              <label for="secondary">Secondario:</label>
+              <input type="checkbox" id="secondary" name="secondary"/>
+              </p>
 							<p>
 								<input type="submit" id="submit" name="submit" value="Modifica" />
 								<input type="reset" id="reset" name="reset" value="Cancella" />
-							</p>
+              </p>
 						</fieldset>
 					</form>
 				</div>
